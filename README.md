@@ -197,7 +197,7 @@ TThe output above shows that an ELB has been created. Navigate to the specified 
 Check the status of the system to verify all of the Anchore services are up:
 
 ```
-anchore-cli --url http://xxxxxx-default-anchoreen-xxxx-xxxxxxxxxx.us-east-1.elb.amazonaws.com/v1/ --u admin --p foobar system status
+$ anchore-cli --url http://xxxxxx-default-anchoreen-xxxx-xxxxxxxxxx.us-east-1.elb.amazonaws.com/v1/ --u admin --p foobar system status
 Service apiext (anchore-enterprise-anchore-engine-api-6f6c4bd6bd-nvzh9, http://anchore-enterprise-anchore-engine-api:8228): up
 Service rbac_authorizer (anchore-enterprise-anchore-engine-api-6f6c4bd6bd-nvzh9, http://localhost:8089): up
 Service reports (anchore-enterprise-anchore-engine-api-6f6c4bd6bd-nvzh9, http://anchore-enterprise-anchore-engine-enterprise-reports:8558): up
