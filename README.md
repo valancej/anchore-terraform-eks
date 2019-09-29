@@ -130,7 +130,7 @@ Deploy the AWS ALB Ingress controller YAML:
 
 #### Create secrets
 
-Enterprise services require an Anchore Enterprise license, as well as credentials with permission to the private Docker repository containing the enterprise software.
+Enterprise services require an Anchore Enterprise license, as well as credentials with permission to access the private DockerHub repository containing the enterprise software.
 
 Create a kubernetes secret containing your license file:
 
