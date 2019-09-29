@@ -192,3 +192,23 @@ TThe output above shows that an ELB has been created. Navigate to the specified 
 
 ![login](images/anchore-login.png)
 
+#### Anchore System
+
+Check the status of the system to verify all of the Anchore services are up:
+
+```
+anchore-cli --url http://xxxxxx-default-anchoreen-xxxx-xxxxxxxxxx.us-east-1.elb.amazonaws.com/v1/ --u admin --p foobar system status
+Service apiext (anchore-enterprise-anchore-engine-api-6f6c4bd6bd-nvzh9, http://anchore-enterprise-anchore-engine-api:8228): up
+Service rbac_authorizer (anchore-enterprise-anchore-engine-api-6f6c4bd6bd-nvzh9, http://localhost:8089): up
+Service reports (anchore-enterprise-anchore-engine-api-6f6c4bd6bd-nvzh9, http://anchore-enterprise-anchore-engine-enterprise-reports:8558): up
+Service rbac_manager (anchore-enterprise-anchore-engine-api-6f6c4bd6bd-nvzh9, http://anchore-enterprise-anchore-engine-api:8229): up
+Service policy_engine (anchore-enterprise-anchore-engine-policy-6dd9896c97-nwcbx, http://anchore-enterprise-anchore-engine-policy:8087): up
+Service analyzer (anchore-enterprise-anchore-engine-analyzer-6865f45bdc-6tgww, http://anchore-enterprise-anchore-engine-analyzer:8084): up
+Service simplequeue (anchore-enterprise-anchore-engine-simplequeue-7744778576-th54t, http://anchore-enterprise-anchore-engine-simplequeue:8083): up
+Service catalog (anchore-enterprise-anchore-engine-catalog-576795b8df-9drxg, http://anchore-enterprise-anchore-engine-catalog:8082): up
+
+Engine DB Version: 0.0.11
+Engine Code Version: 0.5.0
+
+```
+
