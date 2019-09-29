@@ -209,6 +209,14 @@ Service catalog (anchore-enterprise-anchore-engine-catalog-576795b8df-9drxg, htt
 
 Engine DB Version: 0.0.11
 Engine Code Version: 0.5.0
-
 ```
 
+#### Anchore Feeds
+
+It can take some time to fetch all of the vulnerability feeds from the upstream data sources. Check on the status of feeds:
+
+```
+$ anchore-cli --url http://904f0f3b-default-anchoreen-d4c9-1230437662.us-east-1.elb.amazonaws.com/v1/ --u admin --p foobar system feeds list
+```
+
+**Note:** It is not uncommon for the above command to return a: `[]` as the initial feed sync occurs. 
