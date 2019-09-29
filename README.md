@@ -190,5 +190,5 @@ Events:
 
 TThe output above shows that an ELB has been created. Navigate to the specified URL in a browser:
 
-![images/anchore-login.png]
+![login](images/anchore-login.png)
 
