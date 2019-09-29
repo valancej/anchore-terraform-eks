@@ -10,7 +10,11 @@ This document will walkthrough the installation of Anchore Enterprise on an Amaz
 Once you have an EKS cluster up and running with worker nodes launched, you can verity via the followiing command. 
 
 ```
-
+$ kubectl get nodes
+NAME                             STATUS   ROLES    AGE   VERSION
+ip-192-168-2-164.ec2.internal    Ready    <none>   10m   v1.14.6-eks-5047ed
+ip-192-168-35-43.ec2.internal    Ready    <none>   10m   v1.14.6-eks-5047ed
+ip-192-168-55-228.ec2.internal   Ready    <none>   10m   v1.14.6-eks-5047ed
 ```
 
 ## Anchore Helm Chart
@@ -27,4 +31,79 @@ To make the necessary configurations to the Helm chart, create a custom `anchore
 
 ### Configurations
 
+Make the following changes below to your `anchore_values.yaml`
+
 #### Ingress
+
+```
+ingress:
+  enabled: true
+  # Use the following paths for GCE/ALB ingress controller
+  apiPath: /v1/*
+  uiPath: /*
+    # apiPath: /v1/
+    # uiPath: /
+    # Uncomment the following lines to bind on specific hostnames
+    # apiHosts:
+    #   - anchore-api.example.com
+    # uiHosts:
+    #   - anchore-ui.example.com
+  annotations:
+    kubernetes.io/ingress.class: alb
+    alb.ingress.kubernetes.io/scheme: internet-facing
+```
+
+#### Anchore Engine API Service
+
+```
+# Pod configuration for the anchore engine api service.
+anchoreApi:
+  replicaCount: 1
+
+  # Set extra environment variables. These will be set on all api containers.
+  extraEnv: []
+    # - name: foo
+    #   value: bar
+
+  # kubernetes service configuration for anchore external API
+  service:
+    type: NodePort
+    port: 8228
+    annotations: {}
+```
+
+**Note:** Changed the service type to NodePort
+
+#### Anchore Enterprise Global
+
+```
+anchoreEnterpriseGlobal:
+  enabled: true
+```
+
+#### Anchore Enterprise UI
+
+```
+anchoreEnterpriseUi:
+  # kubernetes service configuration for anchore UI
+  service:
+    type: NodePort
+    port: 80
+    annotations: {}
+    sessionAffinity: ClientIP
+```
+
+**Note:** Changed service type to NodePort.
+
+### AWS EKS Configurations
+
+Download the ALB Ingress manifest and update the `cluster-name` section with the name of your EKS cluster name. 
+
+`wget https://raw.githubusercontent.com/kubernetes-sigs/aws-alb-ingress-controller/v1.0.1/docs/examples/alb-ingress-controller.yaml`
+
+```
+# Name of your cluster. Used when naming resources created
+            # by the ALB Ingress Controller, providing distinction between
+            # clusters.
+            - --cluster-name=anchore-prod
+```

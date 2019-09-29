@@ -1,0 +1,53 @@
+anchoreEnterpriseGlobal:
+  enabled: True
+
+ingress:
+  enabled: true
+  labels: {}
+  # Use the following paths for GCE/ALB ingress controller
+  apiPath: /v1/*
+  uiPath: /*
+  # apiPath: /v1/
+  # uiPath: /
+  # Uncomment the following lines to bind on specific hostnames
+  # apiHosts:
+  #   - anchore-api.example.com
+  # uiHosts:
+  #   - anchore-ui.example.com
+  annotations:
+    # kubernetes.io/ingress.class: gce
+    # kubernetes.io/ingress.class: nginx
+    # nginx.ingress.kubernetes.io/ssl-redirect: "false"
+    # kubernetes.io/ingress.allow-http: false
+    # kubernetes.io/tls-acme: true
+    kubernetes.io/ingress.class: alb
+    alb.ingress.kubernetes.io/scheme: internet-facing
+  tls: []
+  # Secrets must be manually created in the namespace.
+  #  - secretName: chart-example-tls
+  #    hosts:
+  #      - chart-example.local
+
+# Pod configuration for the anchore engine api service.
+anchoreApi:
+  replicaCount: 1
+
+  # Set extra environment variables. These will be set on all api containers.
+  extraEnv: []
+    # - name: foo
+    #   value: bar
+
+  # kubernetes service configuration for anchore external API
+  service:
+    type: NodePort
+    port: 8228
+    annotations: {}
+
+# Pod configuration for the anchore enterprise ui service.
+anchoreEnterpriseUi:
+  # kubernetes service configuration for anchore UI
+  service:
+    type: NodePort
+    port: 80
+    annotations: {}
+    sessionAffinity: ClientIP
