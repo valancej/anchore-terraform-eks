@@ -25,7 +25,7 @@ Anchore maintains a [Helm chart](https://github.com/helm/charts/tree/master/stab
 - PostgreSQL (9.6.2)
 - Redis (4)
 
-To make the necessary configurations to the Helm chart, create a custom `anchore_values.yaml` file and utilize it during installation. There are many options for configuration with Anchore, this document is intended to cover the minimum required changes to successfully install Anchore Enterprise on Amazon EKS. 
+To make the necessary configurations to the Helm chart, create a custom `anchore_values.yaml` file and reference it during installation. There are many options for configuration with Anchore, this document is intended to cover the minimum required changes to successfully install Anchore Enterprise on Amazon EKS. 
 
 **Note:** For this installation, an ALB ingress controller will be used You can read more about Kubernetes Ingress with AWS ALB Ingress Controller [here](https://aws.amazon.com/blogs/opensource/kubernetes-ingress-aws-alb-ingress-controller/)
 
