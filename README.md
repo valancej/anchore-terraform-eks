@@ -101,7 +101,7 @@ anchoreEnterpriseUi:
 
 1. Go to the IAM Console.
 2. Choose the section **Roles** and search for the NodeInstanceRole of your EKS worker nodes. 
-3. Create and attach policy using the contents of the templatte [iam-policy.json](https://raw.githubusercontent.com/kubernetes-sigs/aws-alb-ingress-controller/v1.0.0/docs/examples/iam-policy.json)
+3. Create and attach a policy using the contents of the template [iam-policy.json](https://raw.githubusercontent.com/kubernetes-sigs/aws-alb-ingress-controller/v1.0.0/docs/examples/iam-policy.json)
 
 Deploy RBAC Roles and RoleBindings needed by the ALB Ingress Controller
 
