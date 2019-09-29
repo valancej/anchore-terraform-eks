@@ -218,3 +218,5 @@ $ anchore-cli --url http://xxxxxx-default-anchoreen-xxxx-xxxxxxxxxx.us-east-1.el
 ```
 
 **Note:** It is not uncommon for the above command to return a: `[]` as the initial feed sync occurs. 
+
+Once the vulnerability feed sync is complete, Anchore can begin to return vulnerability results on analyzed images. Please continue to the [Usage] section of our documentation for more information.
